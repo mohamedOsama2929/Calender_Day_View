@@ -212,11 +212,15 @@ internal class ViewState {
             return maxDate?.let {
                 val date = it - Days(numberOfVisibleDays - 1)
                 getXOriginForDate(date)
-            } ?: Float.NEGATIVE_INFINITY
+            } ?: kotlin.run {
+                if (isLtr) Float.NEGATIVE_INFINITY else Float.POSITIVE_INFINITY
+            }
         }
 
     val maxX: Float
-        get() = minDate?.let { getXOriginForDate(it) } ?: Float.POSITIVE_INFINITY
+        get() = minDate?.let { getXOriginForDate(it) } ?: kotlin.run {
+            if (isLtr) Float.POSITIVE_INFINITY else Float.NEGATIVE_INFINITY
+        }
 
     val isSingleDay: Boolean
         get() = numberOfVisibleDays == 1
