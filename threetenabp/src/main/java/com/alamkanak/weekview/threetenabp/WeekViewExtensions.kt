@@ -64,21 +64,6 @@ val WeekView.lastVisibleDateAsLocalDate: LocalDate
     get() = lastVisibleDate.toLocalDate()
 
 /**
- * Scrolls to the specified date. If it is before [WeekView.minDate] or after [WeekView.maxDate],
- * these will be shown instead.
- *
- * @param date The [LocalDate] to show.
- */
-@Deprecated(
-    message = "This method has been renamed to scrollToDate(LocalDate).",
-    replaceWith = ReplaceWith(expression = "scrollToDate"),
-    level = DeprecationLevel.ERROR
-)
-fun WeekView.goToDate(date: LocalDate) {
-    scrollToDate(date)
-}
-
-/**
  * Scrolls to the specified date. Any provided [LocalDate] that falls outside the range of
  * [WeekView.minDate] and [WeekView.maxDate] will be adjusted to fit into this range.
  *

@@ -90,15 +90,6 @@ internal class ViewState {
 
     var horizontalScrollingEnabled: Boolean = false
 
-    @Deprecated("No longer used")
-    var xScrollingSpeed: Float = 0f
-    @Deprecated("No longer used")
-    var verticalFlingEnabled: Boolean = false
-    @Deprecated("No longer used")
-    var horizontalFlingEnabled: Boolean = false
-    @Deprecated("No longer used")
-    var scrollDuration: Int = 0
-
     var minHour: Int = 0
     var maxHour: Int = 24
 
@@ -208,17 +199,15 @@ internal class ViewState {
     }
 
     val minX: Float
-        get() {
-            return maxDate?.let {
-                val date = it - Days(numberOfVisibleDays - 1)
-                getXOriginForDate(date)
-            } ?: kotlin.run {
-                if (isLtr) Float.NEGATIVE_INFINITY else Float.POSITIVE_INFINITY
-            }
+        get() = maxDate?.let {
+            val date = it - Days(numberOfVisibleDays - 1)
+            getXOriginForDate(date)
+        } ?: run {
+            if (isLtr) Float.NEGATIVE_INFINITY else Float.POSITIVE_INFINITY
         }
 
     val maxX: Float
-        get() = minDate?.let { getXOriginForDate(it) } ?: kotlin.run {
+        get() = minDate?.let { getXOriginForDate(it) } ?: run {
             if (isLtr) Float.POSITIVE_INFINITY else Float.NEGATIVE_INFINITY
         }
 

@@ -205,11 +205,6 @@ internal object ViewStateFactory {
 
         viewState.apply {
             horizontalScrollingEnabled = a.getBoolean(R.styleable.WeekView_horizontalScrollingEnabled, true)
-
-            xScrollingSpeed = a.getFloat(R.styleable.WeekView_xScrollingSpeed, 1f)
-            horizontalFlingEnabled = a.getBoolean(R.styleable.WeekView_horizontalFlingEnabled, true)
-            verticalFlingEnabled = a.getBoolean(R.styleable.WeekView_verticalFlingEnabled, true)
-            scrollDuration = a.getInt(R.styleable.WeekView_scrollDuration, 250)
         }
 
         a.recycle()

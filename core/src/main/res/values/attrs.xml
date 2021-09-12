@@ -109,11 +109,6 @@
         <!-- Scrolling -->
         <attr name="horizontalScrollingEnabled" format="boolean" />
 
-        <attr name="xScrollingSpeed" format="float" />
-        <attr name="verticalFlingEnabled" format="boolean" />
-        <attr name="horizontalFlingEnabled" format="boolean" />
-        <attr name="scrollDuration" format="integer" />
-
         <!-- Font -->
         <attr name="fontFamily" format="string" />
         <attr name="typeface">

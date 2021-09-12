@@ -251,6 +251,7 @@ class WeekView @JvmOverloads constructor(
     @Deprecated(
         message = "Use stickToWeekInWeekView instead.",
         replaceWith = ReplaceWith(expression = "stickToWeekInWeekView"),
+        level = DeprecationLevel.ERROR,
     )
     @PublicApi
     var showFirstDayOfWeekFirst: Boolean
@@ -1143,35 +1144,6 @@ class WeekView @JvmOverloads constructor(
      */
 
     /**
-     * Returns the scrolling speed factor in horizontal direction.
-     */
-    @PublicApi
-    @Deprecated(
-        message = "This value is no longer being taken into account.",
-        level = DeprecationLevel.ERROR
-    )
-    var xScrollingSpeed: Float
-        get() = viewState.xScrollingSpeed
-        set(value) {
-            viewState.xScrollingSpeed = value
-        }
-
-    /**
-     * Returns whether WeekView can fling horizontally.
-     */
-    @PublicApi
-    @Deprecated(
-        message = "Use isHorizontalScrollingEnabled instead.",
-        replaceWith = ReplaceWith("isHorizontalScrollingEnabled"),
-        level = DeprecationLevel.ERROR
-    )
-    var isHorizontalFlingEnabled: Boolean
-        get() = viewState.horizontalFlingEnabled
-        set(value) {
-            viewState.horizontalFlingEnabled = value
-        }
-
-    /**
      * Returns whether WeekView can scroll horizontally.
      */
     @PublicApi
@@ -1179,31 +1151,6 @@ class WeekView @JvmOverloads constructor(
         get() = viewState.horizontalScrollingEnabled
         set(value) {
             viewState.horizontalScrollingEnabled = value
-        }
-
-    /**
-     * Returns whether WeekView can fling vertically.
-     */
-    @Deprecated(
-        message = "This value is no longer being taken into account.",
-        level = DeprecationLevel.ERROR
-    )
-    @PublicApi
-    var isVerticalFlingEnabled: Boolean
-        get() = viewState.verticalFlingEnabled
-        set(value) {
-            viewState.verticalFlingEnabled = value
-        }
-
-    @PublicApi
-    @Deprecated(
-        message = "This value is no longer being taken into account.",
-        level = DeprecationLevel.ERROR
-    )
-    var scrollDuration: Int
-        get() = viewState.scrollDuration
-        set(value) {
-            viewState.scrollDuration = value
         }
 
     @SuppressLint("ClickableViewAccessibility")
@@ -1295,51 +1242,6 @@ class WeekView @JvmOverloads constructor(
         navigator.scrollVerticallyTo(offset = finalOffset)
     }
 
-    /**
-     * Scrolls to the current date.
-     */
-    @Deprecated(
-        message = "This method will be removed in a future release. Use scrollToDate() instead.",
-        replaceWith = ReplaceWith(expression = "scrollToDate"),
-        level = DeprecationLevel.ERROR
-    )
-    @PublicApi
-    fun goToToday() {
-        scrollToDate(today())
-    }
-
-    /**
-     * Scrolls to the current date and time.
-     */
-    @Deprecated(
-        message = "This method will be removed in a future release. Use scrollToDateTime() instead.",
-        replaceWith = ReplaceWith(expression = "scrollToDateTime"),
-        level = DeprecationLevel.ERROR
-    )
-    @PublicApi
-    fun goToCurrentTime() {
-        internalScrollToDate(
-            date = now(),
-            onComplete = { scrollToTime(hour = it.hour, minute = it.minute) }
-        )
-    }
-
-    /**
-     * Scrolls to a specific date. If the date is before [minDate] or after [maxDate], [WeekView]
-     * will scroll to them instead.
-     *
-     * @param date The date to show.
-     */
-    @Deprecated(
-        message = "This method will be removed in a future release. Use scrollToDate() instead.",
-        replaceWith = ReplaceWith(expression = "scrollToDate"),
-        level = DeprecationLevel.ERROR
-    )
-    @PublicApi
-    fun goToDate(date: Calendar) {
-        scrollToDate(date)
-    }
-
     private fun internalScrollToDate(date: Calendar, onComplete: (Calendar) -> Unit = {}) {
         val adjustedDate = viewState.getStartDateInAllowedRange(date)
         if (adjustedDate.toEpochDays() == viewState.firstVisibleDate.toEpochDays()) {
@@ -1359,22 +1261,6 @@ class WeekView @JvmOverloads constructor(
         navigator.scrollHorizontallyTo(date = adjustedDate) {
             onComplete(adjustedDate)
         }
-    }
-
-    /**
-     * Scrolls to a specific hour. If the hour is before [minHour] or after [maxHour], [WeekView]
-     * will scroll to them instead.
-     *
-     * @param hour The hour to scroll to, in 24-hour format. Supported values are 0-24.
-     */
-    @Deprecated(
-        message = "This method will be removed in a future release. Use scrollToTime() instead.",
-        replaceWith = ReplaceWith(expression = "scrollToTime"),
-        level = DeprecationLevel.ERROR
-    )
-    @PublicApi
-    fun goToHour(hour: Int) {
-        scrollToTime(hour = hour, minute = 0)
     }
 
     /**
@@ -1458,22 +1344,6 @@ class WeekView @JvmOverloads constructor(
         adapter?.registerObserver(this)
         invalidate()
     }
-
-    @PublicApi
-    @Deprecated(
-        message = "Use setDateFormatter() and setTimeFormatter() instead.",
-        level = DeprecationLevel.ERROR
-    )
-    var dateTimeInterpreter: DateTimeInterpreter
-        get() = object : DateTimeInterpreter {
-            override fun interpretDate(date: Calendar): String = viewState.dateFormatter(date)
-            override fun interpretTime(hour: Int): String = viewState.timeFormatter(hour)
-        }
-        set(value) {
-            setDateFormatter { value.interpretDate(it) }
-            setTimeFormatter { value.interpretTime(it) }
-            invalidate()
-        }
 
     @PublicApi
     fun setDateFormatter(formatter: DateFormatter) {
@@ -1707,25 +1577,6 @@ class WeekView @JvmOverloads constructor(
         override val eventsCache = SimpleEventsCache()
 
         /**
-         * Submits a new list of [WeekViewDisplayable] elements to the adapter. These events are
-         * processed on a background thread and then presented in [WeekView]. Previously submitted
-         * events are replaced completely.
-         *
-         * @param events The [WeekViewDisplayable] elements that are to be displayed in [WeekView]
-         */
-        @PublicApi
-        @Deprecated(
-            message = "Use submitList() to submit a list of elements of type T instead. Then, overwrite the adapter's onCreateEntity() method to create a WeekViewEntity.",
-            replaceWith = ReplaceWith(expression = "submitList"),
-            level = DeprecationLevel.ERROR
-        )
-        fun submit(events: List<WeekViewDisplayable<T>>) {
-            val viewState = weekView?.viewState ?: return
-            val entities = events.map { it.toWeekViewEntity(context) }
-            eventsProcessor.submit(entities, viewState, onFinished = this::updateObserver)
-        }
-
-        /**
          * Submits a new list of elements to the adapter. These events are processed on a background
          * thread and then presented in [WeekView]. Previously submitted events are replaced
          * completely.
@@ -1757,24 +1608,6 @@ class WeekView @JvmOverloads constructor(
     abstract class PagingAdapter<T> : Adapter<T>() {
 
         override val eventsCache = PaginatedEventsCache()
-
-        /**
-         * Submits a new list of [WeekViewDisplayable] elements to the adapter. These events are
-         * processed on a background thread and then presented in [WeekView].
-         *
-         * @param events The [WeekViewDisplayable] elements that are to be displayed in [WeekView]
-         */
-        @PublicApi
-        @Deprecated(
-            message = "Use submitList() to submit a list of elements of type T instead. Then, overwrite the adapter's onCreateEntity() method to create a WeekViewEntity.",
-            replaceWith = ReplaceWith(expression = "submitList"),
-            level = DeprecationLevel.ERROR
-        )
-        fun submit(events: List<WeekViewDisplayable<T>>) {
-            val viewState = weekView?.viewState ?: return
-            val entities = events.map { it.toWeekViewEntity(context) }
-            eventsProcessor.submit(entities, viewState, onFinished = this::updateObserver)
-        }
 
         /**
          * Submits a new list of elements of type [T] to the adapter. These events are processed on
