@@ -1459,11 +1459,7 @@ class WeekView @JvmOverloads constructor(
          * @param item The item of type [T] that was submitted to [WeekView]
          * @return A [WeekViewEntity] that will be rendered in [WeekView]
          */
-        open fun onCreateEntity(item: T): WeekViewEntity {
-            throw RuntimeException(
-                "You called submitList() on WeekView's adapter, but didn't implement onCreateEntity()."
-            )
-        }
+        abstract fun onCreateEntity(item: T): WeekViewEntity
 
         /**
          * Returns the data of the [WeekViewEntity.Event] that the user clicked on.

@@ -218,9 +218,7 @@ internal fun firstDayOfYear(): Calendar {
     }
 }
 
-internal typealias DateRange = List<Calendar>
-
-internal fun DateRange.validate(viewState: ViewState): List<Calendar> {
+internal fun List<Calendar>.validate(viewState: ViewState): List<Calendar> {
     val minDate = viewState.minDate
     val maxDate = viewState.maxDate
 
