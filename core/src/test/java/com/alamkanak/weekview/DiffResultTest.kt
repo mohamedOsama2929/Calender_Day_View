@@ -40,7 +40,7 @@ class DiffResultTest {
     fun `Updated entities are correctly recognized as new`() {
         val existingEntity = MockFactory.resolvedWeekViewEntity()
         val newEntity = existingEntity.createCopy(
-            endTime = existingEntity.startTime + Hours(2)
+            endTime = existingEntity.startTime.plusHours(2)
         )
 
         val result = DiffResult.calculateDiff(
@@ -56,7 +56,7 @@ class DiffResultTest {
     fun `New and updated entities are correctly recognized together`() {
         val existingEntity = MockFactory.resolvedWeekViewEntity()
         val updatedEntity = existingEntity.createCopy(
-            endTime = existingEntity.startTime + Hours(2)
+            endTime = existingEntity.startTime.plusHours(2)
         )
         val newEntity = MockFactory.resolvedWeekViewEntity()
 

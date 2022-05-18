@@ -31,7 +31,7 @@ internal data class EventChip(
     var bounds: RectF = RectF()
 
     val durationInMinutes: Int by lazy {
-        (endTime minutesUntil startTime).minutes
+        endTime minutesUntil startTime
     }
 
     /**

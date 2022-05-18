@@ -31,12 +31,12 @@ private fun ResolvedWeekViewEntity.splitByDates(
     val daysInBetween = endTime.toEpochDays() - startTime.toEpochDays() - 1
 
     if (daysInBetween > 0) {
-        val currentDate = startTime.atStartOfDay + Days(1)
+        val currentDate = startTime.atStartOfDay.plusDays(1)
         while (currentDate.toEpochDays() < endTime.toEpochDays()) {
             val intermediateStart = currentDate.withTimeAtStartOfPeriod(minHour)
             val intermediateEnd = currentDate.withTimeAtEndOfPeriod(maxHour)
             results += createCopy(startTime = intermediateStart, endTime = intermediateEnd)
-            currentDate += Days(1)
+            currentDate.addDays(1)
         }
     }
 

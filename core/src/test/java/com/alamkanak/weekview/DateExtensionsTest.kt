@@ -21,17 +21,17 @@ class DateExtensionsTest {
         val second = firstDayOfYear().withYear(2019)
         assertEquals(first, second)
 
-        val newSecond = second + Millis(1)
+        val newSecond = second.plusMillis(1)
         assertNotEquals(first, newSecond)
     }
 
     @Test
     fun `adds days correctly`() {
         val date = firstDayOfYear().withYear(2019)
-        val result = date + Days(2)
+        val result = date.plusDays(2)
         assertEquals(3, result.dayOfMonth)
 
-        val secondResult = date + Days(31)
+        val secondResult = date.plusDays(31)
         assertEquals(1, secondResult.dayOfMonth)
         assertEquals(Calendar.FEBRUARY, secondResult.month)
     }

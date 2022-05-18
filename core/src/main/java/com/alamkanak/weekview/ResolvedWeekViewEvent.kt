@@ -75,10 +75,10 @@ internal sealed class ResolvedWeekViewEntity {
 
         // Resolve collisions by shortening the preceding event by 1 ms
         if (endTime.isEqual(other.startTime)) {
-            endTime -= Millis(1)
+            endTime.subtractMillis(1)
             return false
         } else if (startTime.isEqual(other.endTime)) {
-            other.endTime -= Millis(1)
+            other.endTime.subtractMillis(1)
         }
 
         return !startTime.isAfter(other.endTime) && !endTime.isBefore(other.startTime)

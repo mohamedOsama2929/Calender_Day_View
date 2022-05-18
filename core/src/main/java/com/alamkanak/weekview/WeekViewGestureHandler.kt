@@ -241,20 +241,20 @@ internal class WeekViewGestureHandler(
 }
 
 private fun Calendar.performFling(direction: Direction, viewState: ViewState): Calendar {
-    val daysDelta = Days(viewState.numberOfVisibleDays)
+    val daysDelta = viewState.numberOfVisibleDays
     return when (direction) {
         Left -> {
             if (viewState.isLtr) {
-                this + daysDelta
+                this.plusDays(daysDelta)
             } else {
-                this - daysDelta
+                this.minusDays(daysDelta)
             }
         }
         Right -> {
             if (viewState.isLtr) {
-                this - daysDelta
+                this.minusDays(daysDelta)
             } else {
-                this + daysDelta
+                this.plusDays(daysDelta)
             }
         }
         else -> throw IllegalStateException()

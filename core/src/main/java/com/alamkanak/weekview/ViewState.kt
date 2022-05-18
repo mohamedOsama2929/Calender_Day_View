@@ -200,7 +200,7 @@ internal class ViewState {
 
     val minX: Float
         get() = maxDate?.let {
-            val date = it - Days(numberOfVisibleDays - 1)
+            val date = it.minusDays(numberOfVisibleDays - 1)
             getXOriginForDate(date)
         } ?: run {
             if (isLtr) Float.NEGATIVE_INFINITY else Float.POSITIVE_INFINITY
@@ -316,7 +316,7 @@ internal class ViewState {
         get() {
             val factor = if (isLtr) -1f else 1f
             val daysFromToday = currentOrigin.x / (dayWidth * factor)
-            return today() + Days(floor(daysFromToday).toInt())
+            return today().plusDays(floor(daysFromToday).toInt())
         }
 
     private fun scrollToFirstDayOfWeek(navigationListener: Navigator.NavigationListener) {
@@ -339,9 +339,9 @@ internal class ViewState {
         val desired = now()
         if (desired.hour > minHour) {
             // Add some padding above the current time (and thus: the now line)
-            desired -= Hours(1)
+            desired.subtractHours(1)
         } else {
-            desired -= Minutes(desired.minute)
+            desired.subtractMinutes(desired.minute)
         }
 
         desired.hour = desired.hour.coerceIn(minimumValue = minHour, maximumValue = maxHour)
@@ -366,10 +366,10 @@ internal class ViewState {
         return if (candidate.isBefore(minDate)) {
             minDate
         } else if (candidate.isAfter(maxDate)) {
-            maxDate - Days(numberOfVisibleDays - 1)
+            maxDate.minusDays(numberOfVisibleDays - 1)
         } else if (numberOfVisibleDays >= 7 && stickToActualWeek) {
             val diff = candidate.computeDifferenceWithFirstDayOfWeek()
-            candidate - Days(diff)
+            candidate.minusDays(diff)
         } else {
             candidate
         }
@@ -559,9 +559,9 @@ internal class ViewState {
         dateRange.clear()
 
         val startDate = if (isLtr) {
-            today() + Days(daysFromOrigin)
+            today().plusDays(daysFromOrigin)
         } else {
-            today() + Days(numberOfVisibleDays - 1 - daysFromOrigin)
+            today().plusDays(numberOfVisibleDays - 1 - daysFromOrigin)
         }
 
         val newDateRange = createDateRange(startDate, visibleDays)
@@ -578,9 +578,9 @@ internal class ViewState {
         startDate: Calendar,
         visibleDays: Int = numberOfVisibleDays
     ) = if (isLtr) {
-        (0 until visibleDays).map { startDate + Days(it) }
+        (0 until visibleDays).map { startDate.plusDays(it) }
     } else {
-        (0 until visibleDays).map { startDate - Days(it) }
+        (0 until visibleDays).map { startDate.minusDays(it) }
     }
 
     fun onSizeChanged(width: Int, height: Int) {

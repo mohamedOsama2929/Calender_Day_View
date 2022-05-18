@@ -257,7 +257,7 @@ internal class EventChipsFactory {
 
 private fun ResolvedWeekViewEntity.sanitize(viewState: ViewState): ResolvedWeekViewEntity {
     return if (endTime.isAtStartOfPeriod(hour = viewState.minHour)) {
-        createCopy(endTime = endTime - Millis(1))
+        createCopy(endTime = endTime.minusMillis(1))
     } else {
         this
     }

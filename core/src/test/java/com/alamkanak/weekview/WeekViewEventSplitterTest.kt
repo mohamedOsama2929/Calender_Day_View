@@ -17,7 +17,7 @@ class WeekViewEventSplitterTest {
         whenever(viewState.maxHour).thenReturn(24)
 
         val startTime = today().withHour(11)
-        val endTime = startTime + Hours(2)
+        val endTime = startTime.plusHours(2)
         val event = createResolvedWeekViewEvent(startTime, endTime)
 
         val results = event.split(viewState)
@@ -47,7 +47,7 @@ class WeekViewEventSplitterTest {
 
         val event = createResolvedWeekViewEvent(
             startTime = today().withHour(22),
-            endTime = today().plus(Days(1)).withHour(6)
+            endTime = today().plusDays(1).withHour(6)
         )
 
         val results = event.split(viewState)
@@ -103,7 +103,7 @@ class WeekViewEventSplitterTest {
         whenever(viewState.maxHour).thenReturn(24)
 
         val startTime = today().withHour(11)
-        val endTime = (startTime + Days(1)).withHour(2)
+        val endTime = (startTime.plusDays(1)).withHour(2)
 
         val event = createResolvedWeekViewEvent(startTime, endTime)
         val results = event.split(viewState)
@@ -128,12 +128,12 @@ class WeekViewEventSplitterTest {
         whenever(viewState.maxHour).thenReturn(maxHour)
 
         val startTime = today().withHour(5)
-        val endTime = (startTime + Days(2)).withHour(23)
+        val endTime = (startTime.plusDays(2)).withHour(23)
 
         val event = createResolvedWeekViewEvent(startTime, endTime)
         val results = event.split(viewState)
 
-        val tomorrow = today() + Days(1)
+        val tomorrow = today().plusDays(1)
         val expected = listOf(
             Event(startTime.withHour(minHour), startTime.withTimeAtEndOfPeriod(maxHour)),
             Event(tomorrow.withHour(minHour), tomorrow.withTimeAtEndOfPeriod(maxHour)),
@@ -155,7 +155,7 @@ class WeekViewEventSplitterTest {
         whenever(viewState.maxHour).thenReturn(maxHour)
 
         val startTime = today().withHour(8)
-        val endTime = (startTime + Days(1)).withHour(5)
+        val endTime = (startTime.plusDays(1)).withHour(5)
 
         val event = createResolvedWeekViewEvent(startTime, endTime)
         val results = event.split(viewState)
@@ -179,7 +179,7 @@ class WeekViewEventSplitterTest {
         whenever(viewState.maxHour).thenReturn(maxHour)
 
         val startTime = today().withHour(22)
-        val endTime = (startTime + Days(1)).withHour(9)
+        val endTime = (startTime.plusDays(1)).withHour(9)
 
         val event = createResolvedWeekViewEvent(startTime, endTime)
         val results = event.split(viewState)
@@ -200,12 +200,12 @@ class WeekViewEventSplitterTest {
         whenever(viewState.maxHour).thenReturn(24)
 
         val startTime = today().withHour(11)
-        val endTime = (startTime + Days(2)).withHour(2)
+        val endTime = (startTime.plusDays(2)).withHour(2)
 
         val event = createResolvedWeekViewEvent(startTime, endTime)
         val results = event.split(viewState)
 
-        val intermediateDate = startTime + Days(1)
+        val intermediateDate = startTime.plusDays(1)
         val expected = listOf(
             Event(startTime, startTime.atEndOfDay),
             Event(intermediateDate.atStartOfDay, intermediateDate.atEndOfDay),

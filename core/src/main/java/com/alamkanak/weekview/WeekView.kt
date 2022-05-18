@@ -178,9 +178,9 @@ class WeekView @JvmOverloads constructor(
         val delta = daysScrolled.roundToInt() * (-1)
 
         val firstVisibleDate = if (viewState.isLtr) {
-            today() + Days(delta)
+            today().plusDays(delta)
         } else {
-            today() - Days(delta)
+            today().minusDays(delta)
         }
 
         val dateRange = viewState.createDateRange(firstVisibleDate)
@@ -352,6 +352,7 @@ class WeekView @JvmOverloads constructor(
     var headerBottomShadowColor: Int
         @RequiresApi(api = 29)
         get() = viewState.headerBackgroundWithShadowPaint.shadowLayerColor
+        @RequiresApi(api = 29)
         set(value) {
             val paint = viewState.headerBackgroundWithShadowPaint
             paint.setShadowLayer(headerBottomShadowRadius.toFloat(), 0f, 0f, value)
@@ -365,6 +366,7 @@ class WeekView @JvmOverloads constructor(
     var headerBottomShadowRadius: Int
         @RequiresApi(api = 29)
         get() = viewState.headerBackgroundWithShadowPaint.shadowLayerRadius.roundToInt()
+        @RequiresApi(api = 29)
         set(value) {
             val paint = viewState.headerBackgroundWithShadowPaint
             paint.setShadowLayer(value.toFloat(), 0f, 0f, headerBottomShadowColor)
@@ -1225,9 +1227,9 @@ class WeekView @JvmOverloads constructor(
 
         if (desired.hour > minHour) {
             // Add some padding above the current time (and thus: the now line)
-            desired -= Hours(1)
+            desired.subtractHours(1)
         } else {
-            desired -= Minutes(desired.minute)
+            desired.subtractMinutes(desired.minute)
         }
 
         val fraction = desired.minute / 60f
