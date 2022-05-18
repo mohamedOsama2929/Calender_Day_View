@@ -4,17 +4,18 @@ import com.alamkanak.weekview.util.createResolvedWeekViewEvent
 import org.junit.Assert.assertFalse
 import org.junit.Assert.assertTrue
 import org.junit.Test
-import org.mockito.Mockito
-import org.mockito.MockitoAnnotations
+import org.junit.runner.RunWith
+import org.mockito.junit.MockitoJUnitRunner
+import org.mockito.kotlin.mock
 import org.mockito.Mockito.`when` as whenever
 
+@RunWith(MockitoJUnitRunner::class)
 class WeekViewEventTest {
 
-    private val viewState = Mockito.mock(ViewState::class.java)
+    private val viewState: ViewState = mock()
     private val factory = EventChipsFactory()
 
     init {
-        MockitoAnnotations.openMocks(this)
         whenever(viewState.minHour).thenReturn(0)
         whenever(viewState.maxHour).thenReturn(24)
     }

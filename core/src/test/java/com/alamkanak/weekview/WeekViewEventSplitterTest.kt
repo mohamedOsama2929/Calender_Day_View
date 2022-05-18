@@ -2,11 +2,10 @@ package com.alamkanak.weekview
 
 import com.alamkanak.weekview.util.Event
 import com.alamkanak.weekview.util.createResolvedWeekViewEvent
-import com.nhaarman.mockitokotlin2.mock
 import org.junit.Assert.assertEquals
 import org.junit.Test
-import org.mockito.Mockito.mock
-import org.mockito.Mockito.`when` as whenever
+import org.mockito.kotlin.mock
+import org.mockito.kotlin.whenever
 
 class WeekViewEventSplitterTest {
 

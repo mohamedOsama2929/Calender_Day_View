@@ -5,12 +5,7 @@ import com.alamkanak.weekview.util.MockFactory
 import com.alamkanak.weekview.util.withDifferentId
 import com.google.common.truth.Truth.assertThat
 import org.junit.Test
-import org.junit.runner.RunWith
-import org.robolectric.RobolectricTestRunner
-import org.robolectric.annotation.Config
 
-@RunWith(RobolectricTestRunner::class)
-@Config(sdk = [27])
 class DiffResultTest {
 
     @Test

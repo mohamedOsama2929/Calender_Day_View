@@ -82,9 +82,9 @@ class GenericViewModel(
     }
 
     class Factory(private val eventsRepository: EventsRepository) : ViewModelProvider.Factory {
-        @Suppress("UNCHECKED_CAST")
-        override fun <T : ViewModel?> create(modelClass: Class<T>): T {
+        override fun <T : ViewModel> create(modelClass: Class<T>): T {
             if (modelClass.isAssignableFrom(GenericViewModel::class.java)) {
+                @Suppress("UNCHECKED_CAST")
                 return GenericViewModel(eventsRepository) as T
             }
             throw IllegalArgumentException("Unknown ViewModel class ${modelClass.simpleName}")
