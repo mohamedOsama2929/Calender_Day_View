@@ -4,8 +4,8 @@ plugins {
     id 'maven-publish'
 }
 
-group = 'com.github.monk1996.Calender_Day_View'
-version = '5.4.0'
+group = 'com.youxel.calender_View'
+version = '1.0.0'
 
 android {
     compileSdkVersion buildConfig.compileSdk
@@ -14,8 +14,8 @@ android {
         targetSdkVersion buildConfig.targetSdk
     }
     compileOptions {
-        sourceCompatibility JavaVersion.VERSION_1_8
-        targetCompatibility JavaVersion.VERSION_1_8
+        sourceCompatibility JavaVersion.VERSION_11
+        targetCompatibility JavaVersion.VERSION_11
     }
 }
 
