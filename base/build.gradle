@@ -2,9 +2,9 @@ plugins {
     id 'com.android.library'
     id 'kotlin-android'
 }
-
-group = 'com.youxel.calender_View'
-version = '1.0.0'
+//
+//group = 'com.youxel.calender_View'
+//version = '1.0.0'
 
 android {
     compileSdkVersion buildConfig.compileSdk

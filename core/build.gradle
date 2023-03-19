@@ -4,9 +4,6 @@ plugins {
     id 'maven-publish'
 }
 
-group = 'com.youxel.calender_View'
-version = '1.0.0'
-
 android {
     compileSdkVersion buildConfig.compileSdk
     defaultConfig {
@@ -34,4 +31,18 @@ dependencies {
     testImplementation testing.mockitoInline
     testImplementation testing.mockitoKotlin
     testImplementation testing.truth
+}
+
+afterEvaluate {
+    publishing {
+        publications {
+            release(MavenPublication) {
+                from components.release
+
+                groupId = 'com.github.mohamedOsama2929'
+                artifactId = 'com.youxel.calender_View'
+                version = '1.0'
+            }
+        }
+    }
 }
