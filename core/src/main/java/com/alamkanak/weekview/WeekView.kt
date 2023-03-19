@@ -85,8 +85,9 @@ class WeekView @JvmOverloads constructor(
     private val renderers: List<Renderer> = listOf(
         TimeColumnRenderer(viewState),
         CalendarRenderer(viewState, eventChipsCacheProvider),
-        HeaderRenderer(context, viewState, eventChipsCacheProvider, onHeaderHeightChanged = this::invalidate)
+      HeaderRenderer(context, viewState, eventChipsCacheProvider, onHeaderHeightChanged = this::invalidate)
     )
+
 
     // We use width and height instead of view.isLaidOut(), because the latter seems to
     // struggle when used in a ViewPager.
@@ -144,6 +145,9 @@ class WeekView @JvmOverloads constructor(
     }
 
     private fun performRendering(canvas: Canvas) {
+        if (showHeader){
+            renderers
+        }
         for (renderer in renderers) {
             renderer.render(canvas)
         }
@@ -301,6 +305,16 @@ class WeekView @JvmOverloads constructor(
         get() = viewState.showHeaderBottomLine
         set(value) {
             viewState.showHeaderBottomLine = value
+            invalidate()
+        }
+    /**
+     * Returns Show Header or Not.
+     */
+    @PublicApi
+    var showHeader: Boolean
+        get() = viewState.showHeader
+        set(value) {
+            viewState.showHeader = value
             invalidate()
         }
 

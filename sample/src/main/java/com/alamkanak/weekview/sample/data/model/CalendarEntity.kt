@@ -40,11 +40,12 @@ fun CalendarEntity.toWeekViewEntity(): WeekViewEntity {
 
 fun CalendarEntity.Event.toWeekViewEntity(): WeekViewEntity {
     val backgroundColor = if (!isCanceled) color else Color.WHITE
-    val textColor = if (!isCanceled) Color.WHITE else color
+    // TODO: Change Text Color
+  //  val textColor = if (!isCanceled) Color.BLACK else color
     val borderWidthResId = if (!isCanceled) R.dimen.no_border_width else R.dimen.border_width
 
     val style = WeekViewEntity.Style.Builder()
-        .setTextColor(textColor)
+       // .setTextColor(textColor)
         .setBackgroundColor(backgroundColor)
         .setBorderWidthResource(borderWidthResId)
         .setBorderColor(color)

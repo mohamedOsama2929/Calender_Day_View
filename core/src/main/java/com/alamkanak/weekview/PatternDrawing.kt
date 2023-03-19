@@ -1,13 +1,12 @@
 package com.alamkanak.weekview
 
-import android.graphics.Canvas
-import android.graphics.Paint
-import android.graphics.RectF
+import android.graphics.*
 import com.alamkanak.weekview.WeekViewEntity.Style.Pattern
 import com.alamkanak.weekview.WeekViewEntity.Style.Pattern.Lined.Direction
 import com.alamkanak.weekview.WeekViewEntity.Style.Pattern.Lined.Direction.EndToStart
 import com.alamkanak.weekview.WeekViewEntity.Style.Pattern.Lined.Direction.StartToEnd
 import kotlin.math.sqrt
+
 
 private data class Line(val startX: Float, val startY: Float, val stopX: Float, val stopY: Float)
 

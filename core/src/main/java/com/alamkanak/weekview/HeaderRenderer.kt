@@ -16,7 +16,7 @@ import kotlin.math.roundToInt
 
 internal class HeaderRenderer(
     context: Context,
-    viewState: ViewState,
+   val viewState: ViewState,
     eventChipsCacheProvider: EventChipsCacheProvider,
     onHeaderHeightChanged: () -> Unit
 ) : Renderer, DateFormatterDependent {
@@ -62,12 +62,16 @@ internal class HeaderRenderer(
     }
 
     override fun render(canvas: Canvas) {
-        eventsUpdater.update()
-        headerUpdater.update()
+        // TODO: to show or hide the header section
+        if (viewState.showHeader){
+            eventsUpdater.update()
+            headerUpdater.update()
 
-        headerDrawer.draw(canvas)
-        dateLabelDrawer.draw(canvas)
-        eventsDrawer.draw(canvas)
+            headerDrawer.draw(canvas)
+            dateLabelDrawer.draw(canvas)
+            eventsDrawer.draw(canvas)
+        }
+
     }
 }
 

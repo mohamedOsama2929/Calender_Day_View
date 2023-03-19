@@ -142,6 +142,7 @@ internal object ViewStateFactory {
         }
 
         viewState.apply {
+            showHeader= a.getBoolean(R.styleable.WeekView_showHeader,true)
             showHeaderBottomLine = a.getBoolean(R.styleable.WeekView_showHeaderBottomLine, false)
             showHeaderBottomShadow = a.getBoolean(R.styleable.WeekView_showHeaderBottomShadow, false)
         }
@@ -227,13 +228,19 @@ private const val MONOSPACE = 3
 
 private fun TypedArray.getCustomTypeface(): Typeface? {
     val fontFamily = getString(R.styleable.WeekView_fontFamily)
+    val timesFontFamily = getString(R.styleable.WeekView_timesFontFamily)
+    val eventTitleFontFamily = getString(R.styleable.WeekView_eventTitleFontFamily)
+    val eventSubTitleFontFamily = getString(R.styleable.WeekView_eventSubTitleFontFamily)
     val typefaceIndex = getInteger(R.styleable.WeekView_typeface, Typeface.NORMAL)
     val textStyle = getInteger(R.styleable.WeekView_textStyle, Typeface.NORMAL)
-    return getTypefaceFromAttrs(fontFamily, typefaceIndex, textStyle)
+    return getTypefaceFromAttrs(fontFamily,timesFontFamily,eventTitleFontFamily,eventSubTitleFontFamily, typefaceIndex, textStyle)
 }
 
 private fun getTypefaceFromAttrs(
     familyName: String?,
+    timesFontFamilyName: String?,
+    eventTitleFontFamilyName: String?,
+    eventSubTitleFontFamilyName: String?,
     typefaceIndex: Int,
     styleIndex: Int
 ): Typeface? {

@@ -6,9 +6,7 @@
     android:layout_height="match_parent"
     android:orientation="vertical">
 
-    <include
-        android:id="@+id/toolbarContainer"
-        layout="@layout/view_toolbar" />
+
 
     <com.alamkanak.weekview.WeekView
         android:id="@+id/weekView"
@@ -17,29 +15,33 @@
         app:adaptiveEventTextSize="true"
         app:allDayEventTextSize="13sp"
         app:columnGap="1dp"
-        app:eventCornerRadius="4dp"
-        app:eventTextColor="@android:color/white"
-        app:headerBottomLineColor="@color/gray_300"
-        app:headerBottomLineWidth="1dp"
+        app:fontFamily="@font/ibm_plex_sans_semi_bold"
+        app:eventCornerRadius="2dp"
+        app:eventTextColor="@android:color/black"
+        app:headerBottomLineColor="#F2F5FC"
+        app:headerBottomLineWidth="0dp"
         app:headerPadding="12dp"
+        app:showHeader="false"
+        app:dayBackgroundColor="#F2F5FC"
+        app:headerBackgroundColor="#F2F5FC"
         app:headerTextColor="@color/gray_600"
         app:hourHeight="60dp"
         app:nowLineColor="@color/accent"
         app:nowLineDotColor="@color/accent"
         app:nowLineDotRadius="5dp"
         app:nowLineStrokeWidth="1dp"
-        app:numberOfVisibleDays="3"
+        app:numberOfVisibleDays="1"
         app:overlappingEventGap="1dp"
         app:showCurrentTimeFirst="true"
-        app:showHeaderBottomLine="true"
+        app:showHeaderBottomLine="false"
         app:showNowLine="true"
         app:showNowLineDot="true"
-        app:showTimeColumnSeparator="true"
-        app:timeColumnBackgroundColor="@color/white"
+        app:showTimeColumnSeparator="false"
+        app:timeColumnBackgroundColor="#F2F5FC"
         app:timeColumnPadding="8dp"
         app:timeColumnSeparatorColor="@color/gray_300"
         app:timeColumnSeparatorStrokeWidth="1dp"
-        app:timeColumnTextColor="@color/gray_600"
+        app:timeColumnTextColor="#4D000000"
         app:timeColumnTextSize="12sp"
         app:todayHeaderTextColor="@color/accent" />
 

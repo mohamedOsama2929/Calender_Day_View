@@ -57,6 +57,7 @@ internal class ViewState {
     var timeColumnPadding: Int = 0
     var timeColumnHoursInterval: Int = 0
 
+
     var headerPadding: Float = 0f
 
     var showWeekNumber: Boolean = false
@@ -86,6 +87,7 @@ internal class ViewState {
     var showTimeColumnSeparator: Boolean = false
     var showTimeColumnHourSeparators: Boolean = false
     var showHeaderBottomLine: Boolean = false
+    var showHeader: Boolean = false
     var showHeaderBottomShadow: Boolean = false
 
     var horizontalScrollingEnabled: Boolean = false

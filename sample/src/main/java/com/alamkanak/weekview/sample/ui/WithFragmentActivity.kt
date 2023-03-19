@@ -49,7 +49,7 @@ class WeekFragment : Fragment(R.layout.fragment_week) {
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
-        binding.toolbarContainer.toolbar.setupWithWeekView(binding.weekView)
+       // binding.toolbarContainer.toolbar.setupWithWeekView(binding.weekView)
 
         val adapter = FragmentWeekViewAdapter(loadMoreHandler = viewModel::fetchEvents)
         binding.weekView.adapter = adapter

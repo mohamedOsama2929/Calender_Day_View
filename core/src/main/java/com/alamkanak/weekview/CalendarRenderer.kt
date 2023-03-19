@@ -1,8 +1,7 @@
 package com.alamkanak.weekview
 
-import android.graphics.Canvas
-import android.graphics.Paint
-import android.graphics.RectF
+import android.graphics.*
+import android.provider.CalendarContract.Colors
 import android.text.StaticLayout
 import androidx.collection.ArrayMap
 import java.util.Calendar
@@ -16,7 +15,8 @@ internal class CalendarRenderer(
 ) : Renderer {
 
     private val singleEventLabels = ArrayMap<String, StaticLayout>()
-    private val eventsUpdater = SingleEventsUpdater(viewState, eventChipsCacheProvider, singleEventLabels)
+    private val eventsUpdater =
+        SingleEventsUpdater(viewState, eventChipsCacheProvider, singleEventLabels)
 
     // Be careful when changing the order of the drawers, as that might cause
     // views to incorrectly draw over each other
@@ -24,7 +24,7 @@ internal class CalendarRenderer(
         DayBackgroundDrawer(viewState),
         BackgroundGridDrawer(viewState),
         SingleEventsDrawer(viewState, eventChipsCacheProvider, singleEventLabels),
-        NowLineDrawer(viewState)
+        //  NowLineDrawer(viewState)
     )
 
     override fun render(canvas: Canvas) {
@@ -147,7 +147,15 @@ private class DayBackgroundDrawer(
         val endX = startPixel + viewState.dayWidth
 
         when {
-            date.isToday -> drawPastAndFutureRect(actualStartPixel, startY, endX, pastPaint, futurePaint, height, canvas)
+            date.isToday -> drawPastAndFutureRect(
+                actualStartPixel,
+                startY,
+                endX,
+                pastPaint,
+                futurePaint,
+                height,
+                canvas
+            )
             date.isBeforeToday -> canvas.drawRect(actualStartPixel, startY, endX, height, pastPaint)
             else -> canvas.drawRect(actualStartPixel, startY, endX, height, futurePaint)
         }
@@ -182,9 +190,10 @@ private class BackgroundGridDrawer(
                 drawHourLines()
             }
 
-            if (viewState.showDaySeparators) {
+            // TODO: change vertical line times separator
+          /*  if (viewState.showDaySeparators) {
                 drawDaySeparators()
-            }
+            }*/
         }
     }
 
@@ -210,11 +219,16 @@ private class BackgroundGridDrawer(
         val verticalOffset = viewState.headerHeight + viewState.currentOrigin.y + heightOfHour
         val horizontalOffset = if (viewState.isLtr) viewState.timeColumnWidth else 0f
 
+        // TODO: change hour separator to dots
+        val paint = viewState.hourSeparatorPaint
+        paint.pathEffect = DashPathEffect(floatArrayOf(4f, 10f), 80f)
+        paint.color = Color.parseColor("#3D43A047")
+
         drawHorizontalLine(
             verticalOffset = verticalOffset,
             startX = horizontalOffset,
             endX = viewState.viewWidth.toFloat(),
-            paint = viewState.hourSeparatorPaint
+            paint = paint
         )
     }
 }
@@ -233,6 +247,7 @@ private class SingleEventsDrawer(
                 drawEventsForDate(date)
             }
         }
+
     }
 
     private fun Canvas.drawEventsForDate(date: Calendar) {
@@ -250,6 +265,7 @@ private class SingleEventsDrawer(
 
         for (eventChip in sortedEventChips) {
             val textLayout = eventLabels[eventChip.id]
+            eventChip.bounds.left+=20
             eventChipDrawer.draw(eventChip, canvas = this, textLayout)
         }
     }

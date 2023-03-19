@@ -1709,6 +1709,48 @@
         "is_canceled": false,
         "is_all_day": false
     },
+
+    {
+        "title": "Event 189",
+        "location": "Location 147",
+        "day_of_month": 19,
+        "start_time": "15:10",
+        "duration": 60,
+        "color": "#F8B552",
+        "is_canceled": false,
+        "is_all_day": false
+    },
+
+    {
+        "title": "Event 189",
+        "location": "osos",
+        "day_of_month": 19,
+        "start_time": "15:05",
+        "duration": 60,
+        "color": "#F8B542",
+        "is_canceled": false,
+        "is_all_day": false
+    },
+    {
+        "title": "Event 189",
+        "location": "Location 147",
+        "day_of_month": 19,
+        "start_time": "15:00",
+        "duration": 120,
+        "color": "#F8B552",
+        "is_canceled": false,
+        "is_all_day": false
+    },
+    {
+        "title": "Event 189",
+        "location": "Location 147",
+        "day_of_month": 19,
+        "start_time": "15:00",
+        "duration": 90,
+        "color": "#F8B552",
+        "is_canceled": false,
+        "is_all_day": false
+    },
     {
         "title": "Event 190",
         "location": "Location 148",

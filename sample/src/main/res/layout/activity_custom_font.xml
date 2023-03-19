@@ -4,6 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+
     android:orientation="vertical"
     tools:context=".ui.CustomFontActivity">
 
@@ -20,7 +21,7 @@
         app:columnGap="1dp"
         app:eventCornerRadius="4dp"
         app:eventTextColor="@color/white"
-        app:fontFamily="monospace"
+        app:fontFamily="@font/ibm_plex_sans_semi_bold"
         app:headerBottomLineColor="@color/gray_300"
         app:headerBottomLineWidth="1dp"
         app:headerPadding="12dp"

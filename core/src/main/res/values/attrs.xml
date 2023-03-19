@@ -18,6 +18,9 @@
         <attr name="headerBottomLineColor" format="color" />
         <attr name="headerBottomLineWidth" format="dimension" />
 
+        <!-- Header-->
+        <attr name="showHeader" format="boolean" />
+
         <!-- Header bottom shadow -->
         <attr name="showHeaderBottomShadow" format="boolean" />
         <attr name="headerBottomShadowColor" format="color" />
@@ -111,6 +114,13 @@
 
         <!-- Font -->
         <attr name="fontFamily" format="string" />
+
+        <attr name="timesFontFamily" format="string" />
+
+        <attr name="eventTitleFontFamily" format="string" />
+
+        <attr name="eventSubTitleFontFamily" format="string" />
+
         <attr name="typeface">
             <enum name="normal" value="0" />
             <enum name="sans" value="1" />

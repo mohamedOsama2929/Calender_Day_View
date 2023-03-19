@@ -74,12 +74,12 @@ internal class TimeColumnRenderer(
             } else {
                 viewWidth - timeColumnWidth
             }
-            canvas.drawLine(lineX, headerHeight, lineX, bottom, timeColumnSeparatorPaint)
+           // canvas.drawLine(lineX, headerHeight, lineX, bottom, timeColumnSeparatorPaint)
         }
 
         // Draw the hour separator inside the time column
         if (showTimeColumnHourSeparators) {
-            canvas.drawLines(hourLines, hourSeparatorPaint)
+          //  canvas.drawLines(hourLines, hourSeparatorPaint)
         }
     }
 
