@@ -36,6 +36,7 @@ internal class EventChipDrawer(
         paint.style=Paint.Style.FILL_AND_STROKE
         paint.strokeWidth=10f
         paint.isAntiAlias=false
+        // TODO: Make Event Border
         coloredBorderPaint.style= Paint.Style.STROKE
         coloredBorderPaint.strokeWidth=4f
         eventChip.event.style.backgroundColor?.let { coloredBorderPaint.color=it }
