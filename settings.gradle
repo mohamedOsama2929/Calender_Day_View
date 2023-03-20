@@ -1,1 +1,1 @@
-include ':core', ':jsr310', ':sample'
+include ':core', ':sample'
