@@ -1,2 +1,1 @@
-include ':base'
-include ':core', ':jodatime', ':jsr310', ':sample', ':threetenabp'
+include ':core', ':jsr310', ':sample'
